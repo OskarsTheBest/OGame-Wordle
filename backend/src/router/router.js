@@ -3,7 +3,6 @@ const express = require('express')
 const { StreamChat } = require("stream-chat");
 const { v4: uuidv4 } = require("uuid");
 const axios = require('axios');
-
 // Import user stats functions and model
 const userstatDbFunc = require('../methods/userstatDbFunc')
 const UserStatsModel = require('../models/userStats')
@@ -13,22 +12,24 @@ const router = express.Router();
 
 // Route to add user stats
 router.post('/addStats', async (req, res) => {
-    const { userId, win } = req.body;
+    const { userId, win, winElo, looseElo} = req.body;
 
     try {
         // Check if user stats exist, create if not
         const userStats = await UserStatsModel.findOne({ userId });
     
         if (!userStats) {
-            const newUserStats = new UserStatsModel({ userId, wins: 0, losses: 0 });
+            const newUserStats = new UserStatsModel({ userId, wins: 0, losses: 0, elo: 100 });
             await newUserStats.save();
         }
     
         // Increment wins or losses depending on result
         if (win) {
             await UserStatsModel.updateOne({ userId }, { $inc: { wins: 1 } });
+            await UserStatsModel.updateOne({ userId}, { $inc: { elo: winElo}});
         } else {
             await UserStatsModel.updateOne({ userId }, { $inc: { losses: 1 } });
+            await UserStatsModel.updateOne({ userId}, { $inc: { elo: - looseElo}});
         }
     
         res.status(200).json({ success: true });

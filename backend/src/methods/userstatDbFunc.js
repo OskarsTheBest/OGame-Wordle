@@ -22,7 +22,7 @@ class UserStatsProvider {
     static async updateUserStats(userId, wins, losses) {
         const updatedUserStatData = await UserStatsModel.findOneAndUpdate(
             { userId },
-            { $set: { wins, losses } },
+            { $set: { wins, losses, elo } },
             { new: true }
         );
         return updatedUserStatData;
@@ -61,8 +61,8 @@ module.exports = UserstatDbFunc = {
             }
 
             // Returns a JSON response indicating that the operation was successful and includes the retrieved userStat data
-            const { wins, losses } = userStatData;
-            res.json({ status: true, success: { userId, wins, losses } });
+            const { wins, losses, elo } = userStatData;
+            res.json({ status: true, success: { userId, wins, losses, elo } });
         } catch (error) {
             next(error);
         }

@@ -8,6 +8,7 @@ const UserStatsSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   wins: { type: Number, default: 0 },
   losses: { type: Number, default: 0 },
+  elo: { type: Number, defaullt: 100},
 });
 
 const UserStatsModel = mongoose.model('UserStats', UserStatsSchema);

@@ -27,7 +27,8 @@ function Game({channel, selectedWord, wordSet}) {
   const [winnerTempWord, setWinnerTempWord] = useState("");
   const [winnerAttempt, setWinnerAttempt] = useState("");
   const [checkLoose, setCheckLoose] = useState(false);
-
+  const looseElo = Math.floor(Math.random() * 21) + 20;
+  const winElo = Math.floor(Math.random() * 11) + 5;
   // useChatContext hook for client
   const { client } = useChatContext();
 
@@ -87,7 +88,7 @@ function Game({channel, selectedWord, wordSet}) {
   
   const addStatsToDatabase = async (userId, win) => {
     try {
-      const response = await axios.post('http://localhost:3001/addStats', { userId, win });
+      const response = await axios.post('http://localhost:3001/addStats', { userId, win, looseElo, winElo });
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -103,15 +104,29 @@ function Game({channel, selectedWord, wordSet}) {
   //checkwin
   useEffect(() => {
     const handleEvent = (event) => {
-      if (
-        event.type === "message.new" &&
-        event.message.text.includes("guessed the word")
-      ) {
+      if (event.type === "message.new" && event.message.text.includes("guessed the word")) {
+        const winnerUserId = event.message.winnerUserId;
+        const winnerTempWord = event.message.winnerTempWord;
+        const winnerUsername = event.message.winnerUsername;
+        const winnerAttempt = event.message.winnerAttempt;
+        
         setCheckWin(true);
-        setGameOver({gameOver: false, guessedWord: false});
+        setWinnerUserId(winnerUserId);
+        setWinnerTempWord(winnerTempWord);
+        setWinnerUsername(winnerUsername);
+        setWinnerAttempt(winnerAttempt);
+        
+        // Check if the current user won or lost the game
+        if (winnerUserId === client.user?.id) {
+          addStatsToDatabase(client.user?.id, true);
+        } else {
+          addStatsToDatabase(client.user?.id, false);
+        }
       }
     };
-  
+    
+    
+
     channel.on("message.new", handleEvent);
     channel.on("message.updated", handleEvent);
   
@@ -150,6 +165,7 @@ function Game({channel, selectedWord, wordSet}) {
   }, []);
 
 
+  console.log(selectedWord);
 
 
 
@@ -169,7 +185,7 @@ if (!playersJoined){
       <div className='gameContainer'>
 
         {checkWin ? (
-          <Win winnerUserId={winnerUserId} winnerTempWord={winnerTempWord} winnerUsername={winnerUsername} winnerAttempt={winnerAttempt} channel={channel} />
+          <Win winnerUserId={winnerUserId} winnerTempWord={winnerTempWord} winnerUsername={winnerUsername} winnerAttempt={winnerAttempt} channel={channel} selectedWord={selectedWord} looseElo={looseElo} winElo={winElo} client={client} />
         ) : checkLoose ? (
           <Loose />
         ) : (null)}

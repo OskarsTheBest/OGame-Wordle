@@ -9,7 +9,7 @@
     color: white;
   }
   
-  .win, .loose {
+  .win, .loose, .elo {
     font-size: 1em; /* Change this to your preferred font size */
     margin: 0;
   }
@@ -22,6 +22,11 @@
   .loose {
     text-align: center;
     color: red; /* Change this to your preferred color */
+  }
+
+  .elo{
+    text-align: center;
+    color: darkmagenta;
   }
 
 .wordlewin {

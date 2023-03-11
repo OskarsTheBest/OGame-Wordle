@@ -6,6 +6,7 @@ import './WinLoss.css'
 function WinLoss({ }) {
   const [wins, setWins] = useState(0); // state variable to store user's win count
   const [losses, setLosses] = useState(0); // state variable to store user's loss count
+  const [elo, setElo] = useState(0);
   const [error, setError] = useState(null); // state variable to store error message
   const { client } = useChatContext(); // access Stream chat client instance
   const userId = client.user?.id; // get user ID from Stream chat client
@@ -16,6 +17,7 @@ function WinLoss({ }) {
       .then(res => {
         setWins(res.data.success.wins); // update win count
         setLosses(res.data.success.losses); // update loss count
+        setElo(res.data.success.elo);
       })
       .catch(err => {
         console.log(err);
@@ -26,6 +28,7 @@ function WinLoss({ }) {
   // display user's win/loss count
   return (
     <div>
+      <h1 className='elo'>ELO: {elo}</h1>
       <h1 className='wl'>Your W/L:</h1>
       <p className='win'>Wins: {wins}</p>
       <p className='loose'>Losses: {losses}</p>
