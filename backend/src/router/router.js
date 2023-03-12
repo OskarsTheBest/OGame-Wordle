@@ -25,11 +25,11 @@ router.post('/addStats', async (req, res) => {
     
         // Increment wins or losses depending on result
         if (win) {
-            await UserStatsModel.updateOne({ userId }, { $inc: { wins: 1 } });
-            await UserStatsModel.updateOne({ userId}, { $inc: { elo: winElo}});
+            await UserStatsModel.updateOne({ userId }, { $inc: { wins: 0.5 } });
+            await UserStatsModel.updateOne({ userId}, { $inc: { elo: Math.max(winElo, 0)}});
         } else {
             await UserStatsModel.updateOne({ userId }, { $inc: { losses: 1 } });
-            await UserStatsModel.updateOne({ userId}, { $inc: { elo: - looseElo}});
+            await UserStatsModel.updateOne({ userId}, { $inc: { elo: Math.max(-looseElo, 0)}});
         }
     
         res.status(200).json({ success: true });

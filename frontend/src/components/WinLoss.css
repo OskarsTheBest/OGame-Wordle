@@ -6,7 +6,7 @@
     font-size: 2em; /* Change this to your preferred font size */
     font-weight: bold;
     margin-bottom: 10px;
-    color: white;
+    color: black;
   }
   
   .win, .loose, .elo {

@@ -33,6 +33,12 @@ app.use(routes);
 app.post("/signup", async (req, res) =>{
   try {
     const {firstName, lastName, username, password} = req.body;
+
+    // Check if any of the required parameters are undefined
+    if (!firstName || !lastName || !username || !password) {
+      return res.status(400).json({ error: "Something has not been entered" });
+    }
+
     const userId = uuidv4();
     const hashedPassword = await bcrypt.hash(password, 10);
     const token = serverClient.createToken(userId);
@@ -42,10 +48,17 @@ app.post("/signup", async (req, res) =>{
     res.json(error);
   }
 });
+
 // Handle user login
 app.post("/login", async (req, res) =>{
   try {
-    const {username,password} = req.body;
+    const {username, password} = req.body;
+
+    // Check if any of the required parameters are undefined
+    if (!username || !password) {
+      return res.status(400).json({ error: "Something has not been entered" });
+    }
+
     const {users} = await serverClient.queryUsers({name: username});
 
     if (users.length === 0) return res.json({message: "User not found"});
@@ -66,6 +79,7 @@ app.post("/login", async (req, res) =>{
     res.json(error);
   }
 });
+
 //start expressjs server
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
