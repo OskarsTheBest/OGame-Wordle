@@ -29,7 +29,7 @@ function WinLoss({ }) {
   return (
     <div>
 <h1 className='elo text-center text-xl text-darkmagenta font-bold'>ELO: {elo}</h1>
-<h1 className='wl text-center text-2xl font-bold'>Your W/L:</h1>
+<h1 className='wl text-center text-2xl font-bold text-gray-300'>Your W/L:</h1>
 <div className="flex justify-center">
   <p className='win mr-8 text-green-600 font-bold'>Wins: {wins}</p>
   <p className='loose ml-8 text-red-600 font-bold'>Losses: {losses}</p>

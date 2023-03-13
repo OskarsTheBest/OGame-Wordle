@@ -34,11 +34,11 @@ function SignUp({ setIsAuth }) {
   return (
     <div className="signup mt-8">
       <div className="mb-4">
-        <label className="block text-lg font-medium mb-2" htmlFor="firstName">
+        <label className="block text-lg font-medium mb-2 text-gray-300" htmlFor="firstName">
           First Name
         </label>
         <input
-          className="signup__input -full border-2 border-gray-100 rounded-xl p-4 bg-transparent"
+          className="signup__input w-full border-2 border-gray-100 text-gray-300 rounded-xl p-4 bg-transparent"
           type="text"
           name="firstName"
           placeholder="First Name"
@@ -48,11 +48,11 @@ function SignUp({ setIsAuth }) {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-lg font-medium mb-2" htmlFor="lastName">
+        <label className="block text-lg font-medium mb-2 text-gray-300" htmlFor="lastName">
           Last Name
         </label>
         <input
-          className="signup__input -full border-2 border-gray-100 rounded-xl p-4 bg-transparent"
+          className="signup__input w-full border-2 border-gray-100 text-gray-300 rounded-xl p-4 bg-transparent"
           type="text"
           name="lastName"
           placeholder="Last Name"
@@ -62,11 +62,11 @@ function SignUp({ setIsAuth }) {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-lg font-medium mb-2" htmlFor="username">
+        <label className="block text-lg font-medium mb-2 text-gray-300" htmlFor="username">
           Username
         </label>
         <input
-          className="signup__input -full border-2 border-gray-100 rounded-xl p-4 bg-transparent"
+          className="signup__input w-full border-2 border-gray-100 text-gray-300 rounded-xl p-4 bg-transparent"
           type="text"
           name="username"
           placeholder="Username"
@@ -76,11 +76,11 @@ function SignUp({ setIsAuth }) {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-lg font-medium mb-2" htmlFor="password">
+        <label className="block text-lg font-medium mb-2 text-gray-300"  htmlFor="password">
           Password
         </label>
         <input
-          className="signup__input -full border-2 border-gray-100 rounded-xl p-4 bg-transparent"
+          className="signup__input w-full border-2 border-gray-100 text-gray-300 rounded-xl p-4 bg-transparent"
           type="password"
           name="password"
           placeholder="Password"

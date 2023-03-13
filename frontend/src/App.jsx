@@ -83,18 +83,20 @@ function App() {
 
 <div className="App">
       {isAuth ? ( 
-        // Show the chat and the join game component if the user is authenticated
-        <Chat client={client}>
+        <div className='bg-gray-800'>
+
+        <Chat client={client} className>
           <JoinGame wordSet={wordSet} selectedWord={selectedWord} />
           <button className='logout' onClick={logOut}>Log Out</button>
         </Chat>
+        </div>
       ) : (
         // Show the sign up and login components if the user is not authenticated
         <div className='flex w-full h-screen'>
-          <div className='w-full flex items-center justify-center lg:w-1/2'>
-          <div className='bg-white px-10 py-20 rounded-3xl border-2 border-gray-200'>
-      <h1 className='text-5xl font-semibold'>Wordle, but its 1vs1</h1>
-      <p className='font-medium text-lg text-gray-500 mt-4'>
+          <div className='w-full flex items-center bg-gray-800 justify-center lg:w-1/2'>
+          <div className='bg-gray-700 px-10 py-20 rounded-3xl border-2 border-gray-900'>
+      <h1 className='text-5xl font-semibold text-gray-100'>Wordle, but its 1vs1</h1>
+      <p className='font-medium text-lg text-gray-300 mt-4'>
         Welcome back! Please enter your details.
       </p>
 
@@ -110,7 +112,7 @@ function App() {
 
       {!showSignUp && (
         <div className='mt-8 flex justify-center items-center'>
-          <p className='font-medium text-base'>Don't have an account?</p>
+          <p className='font-medium text-base text-gray-300'>Don't have an account?</p>
           <button
             onClick={handleSignUpClick}
             className='text-violet-500 text-base font-medium ml-2'
@@ -122,7 +124,7 @@ function App() {
 
       {!showLogin && (
         <div className='mt-8 flex justify-center items-center'>
-          <p className='font-medium text-base'>Already have an account?</p>
+          <p className='font-medium text-base text-gray-300'>Already have an account?</p>
           <button
             onClick={handleAlreadyHaveAnAccountClick}
             className='text-violet-500 text-base font-medium ml-2'
@@ -133,9 +135,9 @@ function App() {
       )}
     </div>
           </div >
-          <div className='hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-200'>
+          <div className='hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-800'>
             <div className='w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-spin'></div>
-            <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
+            <div className='w-full h-1/2 absolute bottom-0 bg-gray/10 backdrop-blur-lg'></div>
 
 
           </div>

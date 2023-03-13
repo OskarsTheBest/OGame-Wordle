@@ -165,7 +165,7 @@ function Game({channel, selectedWord, wordSet}) {
   }, []);
 
 
-  console.log(selectedWord);
+
 
 
 
@@ -182,7 +182,7 @@ if (!playersJoined){
         return <div className='waiting'>Waiting for other player to join</div> 
     }
     return (
-      <div className='gameContainer'>
+      <div className='gameContainer bg-gray-800'>
 
         {checkWin ? (
           <Win winnerUserId={winnerUserId} winnerTempWord={winnerTempWord} winnerUsername={winnerUsername} winnerAttempt={winnerAttempt} channel={channel} selectedWord={selectedWord} looseElo={looseElo} winElo={winElo} client={client} />

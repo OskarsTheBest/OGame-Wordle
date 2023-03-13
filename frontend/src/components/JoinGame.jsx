@@ -38,13 +38,16 @@ function JoinGame({ wordSet, selectedWord }) {
       </Channel>
     )  : ( // if channel is not set, render the join game interface
       
-      <div className="container">
+<div className="container relative flex min-h-screen min-w-full justify-center items-center bg-gray-900">
+  <div aria-hidden="true" className='absolute -inset-y-14 inset-x-0 mx-auto w-40 h-40 rounded-full bg-gradient-to-b from-pink-500 to-purple-600 blur-2xl opacity-75'>
+    <div className="absolute inset-0 rounded-full bg-pink-500 opacity-50 animate-pulse"></div>
+  </div>
       <WinLoss />
     
-      <h4 className="title">Create Game</h4>
+      <h4 className="title ">Create Game</h4>
     
 
-        <label htmlFor="username" className="label">Username of Rival</label>
+        <label htmlFor="username" className="label"></label>
         <input 
           type="text" 
           id="username" 
@@ -56,7 +59,7 @@ function JoinGame({ wordSet, selectedWord }) {
         />
     
         <button 
-          className="button" 
+          className="button active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-4 px-8 rounded-xl bg-violet-500 text-white text-lg font-bold" 
           onClick={createChannel} // call createChannel function when button is clicked
         >
           Join Game

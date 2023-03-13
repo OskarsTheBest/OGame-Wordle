@@ -30,13 +30,13 @@ function Login({ setIsAuth }) {
 
   return (
     <div className='login mt-8'>
-      <label className='login__label text-lg font-medium'>Username</label>
+      <label className='login__label text-lg font-medium text-gray-300'>Username</label>
 
-      <input className='login__input w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent' placeholder='Enter your username' onChange={(event) => {
+      <input className='login__input w-full border-2 border-gray-100 rounded-xl text-gray-300 p-4 mt-1 bg-transparent' placeholder='Enter your username' onChange={(event) => {
         setUsername(event.target.value);
       }} />
-      <label className='login__label text-lg font-medium'>Password</label>
-      <input className='login__input w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent' placeholder='Enter your password' onChange={(event) => {
+      <label className='login__label text-lg font-medium text-gray-300'>Password</label>
+      <input className='login__input w-full border-2 border-gray-100 rounded-xl text-gray-300 p-4 mt-1 bg-transparent' type="password" placeholder='Enter your password' onChange={(event) => {
         setPassword(event.target.value);
       }} />
       <div className='mt-8 flex flex-col gap-y-4'>
